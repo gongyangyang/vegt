@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vegt.mapper.VegtMapper">
+    <resultMap id="BaseResultMap" type="com.vegt.entity.vegt">
+        <result column="vid" jdbcType="INTEGER" property="vid" />
+        <result column="vname" jdbcType="VARCHAR" property="vname" />
+        <result column="vprice" jdbcType="VARCHAR" property="vprice" />
+        <result column="bname"     jdbcType="VARCHAR" property="bname"/>
+        <result column="address" jdbcType="VARCHAR" property="address" />
+        <result column="vtime"   jdbcType="DATE" property="vtime"/>
+    </resultMap>
+
+    <select id="Selvegt"   parameterType="String" resultMap="BaseResultMap">
+        select * from vegt where vid = #{vid}
+    </select>
+
+    <select id="queryvegt"   parameterType="String" resultMap="BaseResultMap">
+        <bind name="vname" value=" '%' + vname + '%' "/>
+        <bind name="bname" value=" '%' + bname + '%'"/>
+        select * from vegt where vname like  #{vname} and bname like #{bname} order by vtime
+        desc
+    </select>
+
+    <select id="countvegt" parameterType="Integer" resultType="java.lang.Integer">
+        select count(*) from vegt
+    </select>
+
+    <select id="fenye" parameterType="Integer" resultMap="BaseResultMap">
+      (select top(#{pagenum2}-#{pagenum1}+1) vid, vname, vprice,bname,address,vtime from vegt
+      where vid not in (select top(#{pagenum1}-1) vid from vegt));
+    </select>
+
+    <insert id="Addvegt" useGeneratedKeys="true" keyProperty="vid">
+        insert into vegt (vid,vname,vprice,bname,address,vtime) values
+        (#{vid},#{vname},#{vprice},#{bname},#{address},#{vtime})
+    </insert>
+</mapper>

@@ -1,0 +1,20 @@
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+spring:
+  datasource:
+       driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+       url: jdbc:sqlserver://127.0.0.1:1433;DatabaseName=vegt
+       username: shis
+       password: shis2007xnh
+  application:
+    name: org-admin
+  http:
+      encoding:
+        force: true
+        charset: UTF-8
+        enabled: true
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.vegt.entity
