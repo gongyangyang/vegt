@@ -2,7 +2,6 @@ package com.vegt.controller;
 import com.vegt.service.exception.*;
 import com.vegt.util.JsonResult;
 import org.springframework.web.bind.annotation.*;
-import sun.plugin2.message.Message;
 
 /*对控制器中的
   异常进行统一处理
