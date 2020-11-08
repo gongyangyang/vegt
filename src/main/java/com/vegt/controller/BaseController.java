@@ -24,6 +24,8 @@ public abstract class BaseController {
             jr.setState(42);
         }else if(e instanceof VegtDuplicateException){
             jr.setState(51);
+        }else if(e instanceof OrderFindException){
+            jr.setState(61);
         }
         return  jr;
     }

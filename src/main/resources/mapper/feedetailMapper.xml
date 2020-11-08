@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.vegt.mapper.FeedetailMapper">
+    <resultMap id="BaseResultMap" type="com.vegt.entity.feedetail">
+        <result column="fid" jdbcType="INTEGER" property="fid" />
+        <result column="cid" jdbcType="VARCHAR" property="cid" />
+        <result column="cname" jdbcType="VARCHAR" property="cname" />
+        <result column="ctype"     jdbcType="VARCHAR" property="ctype"/>
+        <result column="comments" jdbcType="VARCHAR" property="comments" />
+        <result column="ftime"   jdbcType="DATE" property="ftime"/>
+        <result column="bname"   jdbcType="VARCHAR" property="bname"/>
+        <result column="price"   jdbcType="DOUBLE" property="price"/>
+        <result column="number"   jdbcType="DOUBLE" property="number"/>
+        <result column="sum"   jdbcType="DOUBLE" property="sum"/>
+    </resultMap>
+
+    <insert id="InsertFeede" useGeneratedKeys="true" parameterType="java.util.ArrayList">
+      insert into feedetail(fid,cid,cname,ctype,comments,ftime,bname,price,number,sum)
+      values
+      <foreach collection="list" item="item" index="index" separator=",">
+          (#{item.fid},#{item.cid},#{item.cname},#{item.ctype},#{item.comments},
+          #{item.ftime},#{item.bname},#{item.price},#{item.number},#{item.sum})
+      </foreach>
+
+    </insert>
+
+</mapper>

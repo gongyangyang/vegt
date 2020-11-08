@@ -41,5 +41,10 @@ public class OrderMapperTest {
         System.out.println(i);
     }
 
-
+    @Test
+   public void findorder (){
+        String cid ="20201107211137130";
+        order od = orderMapper.Findorder(cid);
+       System.out.println(od);
+   }
 }

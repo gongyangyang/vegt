@@ -1,7 +1,6 @@
 package com.vegt.controller;
 
 import com.vegt.entity.order;
-import com.vegt.entity.user;
 import com.vegt.service.OrderService;
 import com.vegt.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +27,12 @@ public class OrderController extends BaseController {
     public JsonResult<Void> inCorder (order order){
         orderService.addCorder(order);
         return new JsonResult<Void>(SUCCESS);
+    }
+
+    //查询订单Findorder
+    @RequestMapping("cid")
+    public JsonResult<order> byCorder(String cid){
+        order order = orderService.findOrder(cid);
+        return new JsonResult<order>(SUCCESS,order);
     }
 }

@@ -8,4 +8,6 @@ public interface OrderService {
 
     void addCorder(order order);
 
+    order findOrder(String cid);
+
 }

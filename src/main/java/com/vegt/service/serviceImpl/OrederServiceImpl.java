@@ -1,13 +1,11 @@
 package com.vegt.service.serviceImpl;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.vegt.entity.order;
 import com.vegt.mapper.OrderMapper;
 import com.vegt.service.OrderService;
 import com.vegt.service.exception.InsertException;
+import com.vegt.service.exception.OrderFindException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.security.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
@@ -41,6 +39,21 @@ public class OrederServiceImpl implements OrderService{
         if(i<1){
             throw new InsertException("插入数据异常，请联系管理员");
         }
+    }
+
+    @Override
+    public order findOrder(String cid) {
+        order order = new order();
+        if(cid==null || cid.equals("")){
+            throw new OrderFindException("对不起您输入的订单号为空，请输入正确的订单号");
+        }else{
+           order= orderMapper.Findorder(cid);
+           if(order==null){
+               throw new OrderFindException("对不起您输入的订单号不存在，请输入正确的订单号");
+           }
+            System.out.println("[订单]:"+order);
+        }
+        return order;
     }
 
 }

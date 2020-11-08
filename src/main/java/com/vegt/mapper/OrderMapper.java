@@ -19,4 +19,8 @@ public interface OrderMapper {
     @Insert("insert into corder values(#{cid},#{cname},#{ctime},#{ctype},#{comments})")
     Integer inCorder(order order);
 
+    //根据订单编号搜索订单
+    @Select("select * from corder where cid=#{cid}")
+    order Findorder(String cid);
+
 }
